@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <style>
+      .angular-google-map-container {
+          width: 100%;
+          height: 504px;
+      }
+    </style>
+
+    <link href="/css/preview-frame.css" rel="stylesheet">
+    <link href="/lib/ionic.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="/lib/ionic.bundle.js"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+
+    <script>
+// Ionic Starter App
+
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+// 'starter.services' is found in services.js
+// 'starter.controllers' is found in controllers.js
+angular.module('app', ['ionic'])
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+    
+    .state('page3', {
+      url: '/1',
+      templateUrl: 'page3.html'
+    })
+    
+    .state('page5', {
+      url: '/2_1',
+      templateUrl: 'page5.html'
+    })
+    
+    .state('page6', {
+      url: '/2_2',
+      templateUrl: 'page6.html'
+    })
+    
+    .state('page7', {
+      url: '/3_1',
+      templateUrl: 'page7.html'
+    })
+    ;
+
+  // if none of the above states are matched, use this as the fallback
+  
+  $urlRouterProvider.otherwise('/1');
+  
+
+});
+
+
+    </script>
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7">
+  <div>
+    <div>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view></ion-nav-view>
+    </div>
+</div>
+<script id="page3.html" type="text/ng-template">
+<ion-view title="1 Datos Generales">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <div class="list card">
+                <div class="item item-divider">Datos Generales</div>
+                <div class="item item-body">
+                    <div>
+                        <p>Nombre del edificio
+                            <strong>Inm.nombre</strong>
+                        </p>
+                    </div>
+                    <div>
+                        <p>Clave
+                            <strong>Inm.clave</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <ion-list>
+                <label class="item item-input" name="CantidadPersonasLaboran">
+                    <span class="input-label">Cantidad de personal que labora en el Inmueble (aproximado)</span>
+                    <input type="number" placeholder="">
+                </label>
+                <label class="item item-input" name="FuenteInformacion">
+                    <span class="input-label">Fuente de Información</span>
+                    <input type="text" placeholder="">
+                </label>
+                <ion-item class="item-divider">Accesibilidad</ion-item>
+                <ion-toggle toggle-class="toggle-positive" name="AcceTieneRampa">Rampas</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="AcceTieneSenalizacion">Señalización</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="AcceTieneElevador">Elevador</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="AcceTieneSanitario">Sanitarios</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/2_1" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view></script>
+<script id="page5.html" type="text/ng-template">
+<ion-view title="2.1 Ubicación">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <ion-item class="item-divider">Ubicación</ion-item>
+                <label class="item item-input" name="Calle">
+                    <span class="input-label">Calle</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="Colonia">
+                    <span class="input-label">Colonia</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="NumExt">
+                    <span class="input-label">No. Ext.</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="NumInt">
+                    <span class="input-label">No. Int.</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="CP">
+                    <span class="input-label">C.P.</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="Municipio">
+                    <span class="input-label">Localidad</span>
+                    <input type="text" placeholder="">
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">Georeferencia</ion-item>
+                <ion-item class="text-center text-muted">Latitud</ion-item>
+                <label class="item item-input" name="LatGrados">
+                    <span class="input-label">Grados</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="LatMinutos">
+                    <span class="input-label">Minutos</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="LatSegundos">
+                    <span class="input-label">Segundos</span>
+                    <input type="text" placeholder="">
+                </label>
+                <ion-item class="text-center text-muted">Longitud</ion-item>
+                <label class="item item-input" name="LongGrados">
+                    <span class="input-label">Grados</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="LongMinutos">
+                    <span class="input-label">Minutos</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" name="LongSegundos">
+                    <span class="input-label">Segundos</span>
+                    <input type="text" placeholder="">
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/2_2" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view></script>
+<script id="page6.html" type="text/ng-template">
+<ion-view title="2.2 Servicios Públicos">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <ion-item class="item-divider">Vías de acceso importantes al inmueble</ion-item>
+                <ion-toggle toggle-class="toggle-positive" name="ServPubTienePrimarias">Primarias</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="ServPubTieneSecundarias">Secundarias</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="ServPubTieneTerciarias">Terciarias</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" name="ServPubTieneTransportePublico">Transporte Público</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="ServPubTieneAguaPotable">Suministro de Agua potable</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="ServPubTieneDrenaje">Drenaje</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="ServPubTieneElectricidad">Electricidad</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" name="ServPubTieneTelefonia">Telefonía</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+        </form>
+        <ion-list></ion-list>
+        <ion-list>
+            <ion-item class="item-divider">
+                <button class="button button-balanced button-block">Guardar</button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view></script>
+<script id="page7.html" type="text/ng-template">
+<ion-view title="3.1 Físicas">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <label class="item item-input" name="CaracInmSuperficie">
+                    <span class="input-label">Superficie del terreno</span>
+                    <input type="text" placeholder="m2">
+                </label>
+                <label class="item item-input" name="CaracInmEdadConstruccion">
+                    <span class="input-label">Edad de construcción</span>
+                    <input type="text" placeholder="años">
+                </label>
+                <label class="item item-select" name="FK_IdCaracteristicasTerreno__INFRA">
+                    <span class="input-label">Características del terreno</span>
+                    <select></select>
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">Dimensiones y configuración de sus construcciones, (indicando número de cuerpos, niveles y área por cuerpo)</ion-item>
+                <ion-item>-componente-</ion-item>
+            </ion-list>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <label class="item item-input" name="Notas">
+                <span class="input-label">Notas</span><textarea placeholder=""> </textarea>
+            </label>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">Dimensiones y configuración del terreno, mediante identificación georreferenciada (WGS84), de los puntos que conforman la poligonal</ion-item>
+                <ion-item>-componente-</ion-item>
+            </ion-list>
+            <div class="spacer" style="display: inline; height: 100px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <button class="button button-balanced button-block">Guardar</button>
+                </ion-item>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view></script>
+  </body>
+</html>

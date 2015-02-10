@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then remove the CSS include above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+
+  <body ng-app="app" animation="slide-left-right-ios7">
+  <div>
+    <div>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view></ion-nav-view>
+    </div>
+</div>
+<!--templates-->
+<!-- datajson.InmuebleActivo -->
+<!-- datajson.InfraestructuraViewModel.Infraestrutura -->
+<script id="1_1.html" type="text/ng-template">
+<ion-view title="1 Datos Generales">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <div class="list card">
+                <div class="item item-divider">Datos Generales</div>
+                <div class="item item-body">
+                    <div>
+                        <p>Nombre del edificio
+                            <strong>{{InmuebleActivo.NombreEdificio}}</strong>
+                        </p>
+                    </div>
+                    <div>
+                        <p>Clave
+                            <strong>{{InmuebleActivo.clave}}</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">Cantidad de personal que labora en el Inmueble (aproximado)</ span>
+                    <input type="number" placeholder="" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.CantidadPersonasLaboran" name="CantidadPersonasLaboran">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Fuente de Información</span>
+                    <input type="text" placeholder="" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.FuenteInformacion" name="FuenteInformacion">
+                </label>
+                <ion-item class="item-divider">Accesibilidad</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.AcceTieneRampa" name="AcceTieneRampa">Rampas</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.AcceTieneSenalizacion" name="AcceTieneSenalizacion">Señalización</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.AcceTieneElevador" name="AcceTieneElevador">Elevador</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.AcceTieneSanitario" name="AcceTieneSanitario">Sanitarios</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/2_1" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InmuebleINFRA -->
+<!-- datajson.InfraestructuraViewModel.GeoReferencias -->
+<script id="2_1.html" type="text/ng-template">
+<ion-view title="2.1 Ubicación">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <ion-item class="item-divider">Ubicación</ion-item>
+                <label class="item item-input">
+                    <span class="input-label">Calle</span>
+                    <input type="text" placeholder="" ng-model="datajson.InmuebleINFRA.Calle" name="Calle">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Colonia</span>
+                    <input type="text" placeholder="" ng-model="datajson.InmuebleINFRA.Colonia" name="Colonia">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">No. Ext.</span>
+                    <input type="text" placeholder="" ng-model="datajson.InmuebleINFRA.NumExt" name="NumExt">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">No. Int.</span>
+                    <input type="text" placeholder="" ng-model="datajson.InmuebleINFRA.NumInt" name="NumInt">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">C.P.</span>
+                    <input type="text" placeholder="" ng-model="datajson.InmuebleINFRA.CP" name="CP">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Localidad</span>
+                    <input type="text" placeholder="" ng-model="datajson.InmuebleINFRA.Municipio" name="Municipio">
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">Georeferencia</ion-item>
+                <ion-item class="text-center text-muted">Latitud</ion-item>
+                <label class="item item-input">
+                    <span class="input-label">Grados</span>
+                    <input type="text" placeholder="" ng-model="datajson.InfraestructuraViewModel.Georeferencia.LatGrados" name="LatGrados">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Minutos</span>
+                    <input type="text" placeholder="" ng-model="datajson.InfraestructuraViewModel.Georeferencia.LatMinutos" name="LatMinutos">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Segundos</span>
+                    <input type="text" placeholder="" ng-model="datajson.InfraestructuraViewModel.Georeferencia.LatSegundos" name="LatSegundos">
+                </label>
+                <ion-item class="text-center text-muted">Longitud</ion-item>
+                <label class="item item-input">
+                    <span class="input-label">Grados</span>
+                    <input type="text" placeholder="" ng-model="datajson.InfraestructuraViewModel.Georeferencia.LongGrados" name="LongGrados">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Minutos</span>
+                    <input type="text" placeholder="" ng-model="datajson.InfraestructuraViewModel.Georeferencia.LongMinutos" name="LongMinutos">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Segundos</span>
+                    <input type="text" placeholder="" ng-model="datajson.InfraestructuraViewModel.Georeferencia.LongSegundos" name="LongSegundos">
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/2_2" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.Infraestrutura -->
+<script id="2_2.html" type="text/ng-template">
+<ion-view title="2.2 Servicios Públicos">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <ion-item class="item-divider">Vías de acceso importantes al inmueble</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.ServPubTienePrimarias" name="ServPubTienePrimarias">Primarias</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.ServPubTieneSecundarias" name="ServPubTieneSecundarias">Secundarias</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.ServPubTieneTerciarias" name="ServPubTieneTerciarias">Terciarias</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.ServPubTieneTransportePublico" name="ServPubTieneTransportePublico">Transporte Público</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.ServPubTieneAguaPotable" name="ServPubTieneAguaPotable">Suministro de Agua potable</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.ServPubTieneDrenaje" name="ServPubTieneDrenaje">Drenaje</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.ServPubTieneElectricidad" name="ServPubTieneElectricidad">Electricidad</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.Infraestrutura.ServPubTieneTelefonia" name="ServPubTieneTelefonia">Telefonía</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>            
+        </form>
+        <ion-list></ion-list>
+        <ion-list>
+            <ion-item class="item-divider">
+                <a href="#/3_1" class="button button-balanced button-block">Guardar</a>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.Infraestrutura -->
+<script id="3_1.html" type="text/ng-template">
+<ion-view title="3.1 Físicas">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">Superficie del terreno</span>
+                    <input type="tel" placeholder="m2" ng-model="datajson.InfraestructuraViewModel.Infraestructura.CaracInmSuperficie" name="CaracInmSuperficie">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Edad de construcción</span>
+                    <input type="tel" placeholder="años" ng-model="datajson.InfraestructuraViewModel.Infraestructura.CaracInmEdadConstruccion" name="CaracInmEdadConstruccion">
+                </label>
+                <label class="item item-select">
+                    <span class="input-label">Características del terreno</span>
+                    <select ng-model="datajson.InfraestructuraViewModel.Infraestructura.FK_IdCaracteristicasTerreno__INFRA" name="FK_IdCaracteristicasTerreno__INFRA"></select>
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">Dimensiones y configuración de sus construcciones, (indicando número de cuerpos, niveles y área por cuerpo)</ion-item>
+                <ion-item>-componente-</ion-item>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Notas</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.Infraestructura.Notas" name="Notas"> </textarea>
+            </label>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">Dimensiones y configuración del terreno, mediante identificación georreferenciada (WGS84), de los puntos que conforman la poligonal</ion-item>
+                <ion-item>-componente-</ion-item>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Comentarios de obra exterior</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.Infraestructura.ComentarioObraExterior" name="ComentarioObraExterior"> </textarea>
+            </label>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/3_2" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InfraestructuraDetalle -->
+<script id="3_2.html" type="text/ng-template">
+<ion-view title="3.2 Conjunto">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.ConjuntoTieneBardaPerimetral" name="ConjuntoTieneBardaPerimetral">Cuenta con barda perimetral</ion-toggle>
+                <label class="item item-select">
+                    <span class="input-label">Tipo de barda perimetral</span>
+                    <select ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.FK_IdTipoBarda__INFRA" name="FK_IdTipoBarda__INFRA"></select>
+                </label>                
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.ConjuntoTieneAlumbradoExterior" name="ConjuntoTieneAlumbradoExterior">Alumbrado exterior</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>                
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.ConjuntoTieneAreasVerdes" name="ConjuntoTieneAreasVerdes">Áreas verdes</ion-toggle>
+                <label class="item item-input">
+                    <span class="input-label">Área</span>
+                    <input type="tel" placeholder="m2" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.ConjuntoAreasVerdesM2" name="ConjuntoAreasVerdesM2">
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/4_1" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InfraestructuraDetalle -->
+<script id="4_1.html" type="text/ng-template">
+<ion-view title="4 Equipo propio del inmueble">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioSubEstacionElectrica" name="EqPropioSubEstacionElectrica">Subestación eléctrica</ion-toggle>
+                <label class="item item-input">
+                    <span class="input-label">No. de medidores Inst. Eléctrica</span>
+                    <input type="tel" placeholder="m2" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioNumeroMedidores" name="EqPropioNumeroMedidores">
+                </label>
+                <div class="spacer" style="display: block; height: 20px;"></div>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioPlantaEmerjencia" name="EqPropioPlantaEmerjencia">Planta de emergencia</ion-toggle>
+                <label class="item item-input">
+                    <span class="input-label">Capacidad</span>
+                    <input type="tel" placeholder="kW" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioPlantaEmerjenciaCapacidad" name="EqPropioPlantaEmerjenciaCapacidad">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Edad</span>
+                    <input type="tel" placeholder="años" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioPlantaEmerjenciaEdad" name="EqPropioPlantaEmerjenciaEdad">
+                </label>
+                <div class="spacer" style="display: block; height: 20px;"></div>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioCircuitosEmergencia" name="EqPropioCircuitosEmergencia">Circuitos de emergencia</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioSistemaTierras" name="EqPropioSistemaTierras">Sistema de tierras</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioPararrayos" name="EqPropioPararrayos">Pararrayos</ion-toggle>
+                <div class="spacer" style="display: block; height: 20px;"></div>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioDirefentesCorrientes" name="EqPropioDirefentesCorrientes">¿Existen tomas de corriente de diferentes voltajes?</ion-toggle>
+                <div class="spacer" style="display: block; height: 20px;"></div>
+                <ion-item class="item-divider">Tipo de corriente en el inmueble</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioTipoCorrienteNormal" name="EqPropioTipoCorrienteNormal">Normal</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioTipoCorrienteRegulada" name="EqPropioTipoCorrienteRegulada">Regulada</ion-toggle>
+                <div class="spacer" style="display: block; height: 20px;"></div>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioSistemaRiego" name="EqPropioSistemaRiego">Sistema de Riego</ion-toggle>
+                <div class="spacer" style="display: block; height: 20px;"></div>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioCisterna" name="EqPropioCisterna">Cisterna</ion-toggle>
+                <label class="item item-input">
+                    <span class="input-label">Capacidad</span>
+                    <input type="tel" placeholder="litros" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioCisternaCapacidad" name="EqPropioCisternaCapacidad">
+                </label>
+                <div class="spacer" style="display: block; height: 20px;"></div>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioBombeo" name="EqPropioBombeo">Equipo de bombeo</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioHidroneumatico" name="EqPropioHidroneumatico">Equipo hidroneumático</ion-toggle>
+                <div class="spacer" style="display: block; height: 20px;"></div>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioPlanTratamiento" name="EqPropioPlanTratamiento">Planta de tratamiento</ion-toggle>
+                <label class="item item-input">
+                    <span class="input-label">Capacidad</span>
+                    <input type="tel" placeholder="litros" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioPlanTratamientoCapacidad" name="EqPropioPlanTratamientoCapacidad">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Uso del agua tratada</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InfraestructuraDetalle.EqPropioAguaTratada" name="EqPropioAguaTratada"> </textarea>
+                </label>                
+            </ion-list>                        
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/5_1" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP -->
+<script id="5_1.html" type="text/ng-template">
+<ion-view title="1 Descripción del inmueble">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>
+                <ion-item class="item-divider">1.1 Descripción general del inmueble</ion-item>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Descripción</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.DescripcionGeneral" name="DescripcionGeneral"> </textarea>
+                </label>                                 
+            </ion-list>                        
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/5_1_1" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP [?] -->
+<script id="5_1_1.html" type="text/ng-template">
+<ion-view title="1.1 Descripción del inmueble - Diagramas">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>                
+                <ion-list>
+                    <ion-item class="item-divider">Diagrama de los inmuebles, sus flujos y funcionamiento actual (Por planta, indicando accesos, número de cuerpos, y flujos)</ion-item>
+                    <ion-item>-componente-</ion-item>
+                </ion-list>                
+            </ion-list>                        
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/5_2" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP [?] -->
+<script id="5_2.html" type="text/ng-template">
+<ion-view title="1.2 Distribución arquitectónica, por cuerpos y niveles">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>                
+                <ion-list>
+                    <ion-item class="item-divider">Distribución arquitectónica, por cuerpos y niveles</ion-item>
+                    <ion-item>-componente-</ion-item>
+                </ion-list>                
+            </ion-list>                        
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/5_3" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP -->
+<script id="5_3.html" type="text/ng-template">
+<ion-view title="2 Descripción de los elementos de construcción">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>                
+                <ion-list>                    
+                    <ion-item class="item-divider">2.1 Estructura</ion-item>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Características</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.EstructuraCaracteristicas" name="EstructuraCaracteristicas"> </textarea>
+                    </label>
+                    <label class="item item-select">
+                        <span class="input-label">Estado físico</span>
+                        <select ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.FK_IdEstadoFisico_Alias_EstructuraCaracteristicas__INFRA" name="FK_IdEstadoFisico_Alias_EstructuraCaracteristicas__INFRA"></select>
+                    </label>
+                </ion-list>                
+            </ion-list>                        
+            <div class="spacer" style="display: block; height: 20px;"></div>            
+            <ion-list>
+                <ion-item class="item-divider">                                        
+                    <a href="#/5_4" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP -->
+<script id="5_4.html" type="text/ng-template">
+<ion-view title="3 Potencialidad de infraestructura para la implementación del NSJP">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <ion-list>                
+                <ion-item class="item-divider item-text-wrap">¿El inmueble es susceptible de adecuar y/o ampliar, en cuanto a espacio?</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.SusceptibleAmpliacionEspacio" name="SusceptibleAmpliacionEspacio">Es susceptible de adecuar y/o ampliar</ion-toggle>
+                <label class="item item-input">
+                    <span class="input-label">Superficie aproximada</span>
+                    <input type="tel" placeholder="m2" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.SuperficieAmpliacionEspacio" name="SuperficieAmpliacionEspacio">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Describa</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.DescripcionAmpliacionEspacio" name="DescripcionAmpliacionEspacio"> </textarea>
+                </label>
+            </ion-list> 
+            <div class="spacer" style="display: block; height: 20px;"></div>            
+            <ion-list>                
+                <ion-item class="item-divider item-text-wrap">¿El inmueble es susceptible de adecuar y/o ampliar, en cuanto a estructura?</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.SusceptibleAmpliacionEstructura" name="SusceptibleAmpliacionEstructura">Es susceptible de adecuar y/o ampliar</ion-toggle>
+                <label class="item item-input">
+                    <span class="input-label">Superficie aproximada</span>
+                    <input type="tel" placeholder="m2" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.SuperficieAmplacionEstructura" name="SuperficieAmplacionEstructura">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Describa</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.InmuebleNSJP.DescripcionAmpliacionEstructura" name="DescripcionAmpliacionEstructura"> </textarea>
+                </label>
+            </ion-list> 
+            <div class="spacer" style="display: block; height: 20px;"></div>            
+            <ion-list>
+                <ion-item class="item-divider">            
+                    <a href="#/a_1" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1 -->
+<script id="a_1.html" type="text/ng-template">
+<ion-view title="Anexo 1">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <div class="list card">   
+                <div class="item item-dark item-icon-left item-text-wrap">
+                    <i class="icon ion-ios7-bell-outline"></i>
+                    <div>Identificación de espacios físicos requeridos para la implementación del NSJP</div>
+                </div>
+            </div>            
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.1 ¿El inmueble cuenta con los siguientes espacios físicos?</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioUnidadAtencionTemprana" name="EspacioUnidadAtencionTemprana">Unidad de Atención Temprana</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioUnidadAtencionVictimas" name="EspacioUnidadAtencionVictimas">Unidad de Atención a Víctimas</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioAreaTestigoProtegido" name="EspacioAreaTestigoProtegido">Área de testigo protegido</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioAreaPoliciaProcesal" name="EspacioAreaPoliciaProcesal">Área de policía procesal</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioAdminCausa" name="EspacioAdminCausa">Administrador de causa</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioAdminSalas" name="EspacioAdminSalas">Administrador de salas</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioAdminGestion" name="EspacioAdminGestion">Administrador de gestión</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioAdminTribunal" name="EspacioAdminTribunal">Administrador de tribunal</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioAreaTestigoDefensa" name="EspacioAreaTestigoDefensa">Área de testigo de la defensa</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioAreaTestigoDefensa" name="EspacioAreaTestigoDefensa">Área de testigo del Ministerio público</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioSite" name="EspacioSite">Site</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo1ViewModel.Anexo1.EspacioBodegaAlmacen" name="EspacioBodegaAlmacen">Bodega o Almacén de Evidencias</ion-toggle>
+            </ion-list>                        
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/a_2" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2 -->
+<script id="a_2.html" type="text/ng-template">
+<ion-view title="Anexo 2">
+    <ion-content padding="true" class="has-header">
+        <form>            
+            <div class="list card">   
+                <div class="item item-dark item-icon-left item-text-wrap">
+                    <i class="icon ion-ios7-bell-outline"></i>
+                    <div>Características de las Instalaciones</div>
+                </div>
+            </div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.2.1 Instalación hidráulica</ion-item>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Características</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2.CaracteristicasHidraulicas" name="CaracteristicasHidraulicas"> </textarea>
+                </label>
+                <label class="item item-select">
+                    <span class="input-label">Estado físico</span>
+                    <select ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2.FK_IdEstadoFisico_Alias_Hidraulicas__INFRA" name="FK_IdEstadoFisico_Alias_Hidraulicas__INFRA"></select>
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.2.2 Instalación sanitaria</ion-item>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Características</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2.CaracteristicasSanitarias" name="CaracteristicasSanitarias"> </textarea>
+                </label>
+                <label class="item item-select">
+                    <span class="input-label">Estado físico</span>
+                    <select ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2.FK_IdEstadoFisico_Alias_Sanitarias__INFRA" name="FK_IdEstadoFisico_Alias_Sanitarias__INFRA"></select>
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.2.3 Instalación eléctrica</ion-item>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Características</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2.CaracteristicasElectricas" name="CaracteristicasElectricas"> </textarea>
+                </label>
+                <label class="item item-select">
+                    <span class="input-label">Estado físico</span>
+                    <select ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2.FK_IdEstadoFisico_Alias_Electrica__INFRA" name="FK_IdEstadoFisico_Alias_Electrica__INFRA"></select>
+                </label>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">Estado de la instalación</ion-item>
+                <ion-item>-componente-</ion-item>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2.TieneEquiposRespaldoEnergia" name="TieneEquiposRespaldoEnergia">Cuenta con equipos de respaldo de energía</ion-toggle>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">Listas tipo equipo</ion-item>
+                <ion-item>-componente-</ion-item>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>       
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Notas</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo2ViewModel.Anexo2.Notas" name="Notas"> </textarea>
+            </label>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/a_3" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3 -->
+<script id="a_3.html" type="text/ng-template">
+<ion-view title="Anexo 3">
+    <ion-content padding="true" class="has-header">
+        <form>
+            <div class="list card">   
+                <div class="item item-dark item-icon-left item-text-wrap">
+                    <i class="icon ion-ios7-bell-outline"></i>
+                    <div>Para uso exclusivo de inmuebles donde se ubiquen Servicios Periciales</div>
+                </div>
+            </div>
+            <div class="list card">                
+                <div class="item item-stable item-body">
+                    <div>A.3.1 Requerimientos de Instalaciones para espacios de Servicios Periciales
+                    </div>
+                </div>
+            </div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.3.1.1 Instalación Eléctrica</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.ElectricaContactosRegulados" name="ElectricaContactosRegulados">Contactos  regulados</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.ElectricaTomasCorriente" name="ElectricaTomasCorriente">Tomas de corriente</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.ElectricaIluminacion" name="ElectricaIluminacion">Iluminación </ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.ElectricaEmergencia" name="ElectricaEmergencia">Iluminación de emergencia</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.ElectricaCumpleNiveles" name="ElectricaCumpleNiveles">Cumple con los niveles de iluminación</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.ElectricaTableros" name="ElectricaTableros">Tableros automatizados para ahorro de energía</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.3.1.2 Instalación hidráulica y Sanitaria</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.HidraulicaTomasEmergencia" name="HidraulicaTomasEmergencia">Tomas hidráulicas de emergencia</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.HidraulicaRegaderas" name="HidraulicaRegaderas">Regaderas</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.HidraulicaLavaojos" name="HidraulicaLavaojos">Lavaojos</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.HidraulicaRecoleccionFluidos" name="HidraulicaRecoleccionFluidos">Sistema de recolección de fluidos</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.HidraulicaTratamientoResiduos" name="HidraulicaTratamientoResiduos">Sistema de tratamiento de residuos (fluidos)</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.3.1.3 Instalación para detección y supresión de incendio</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.IncendioDeteccion" name="IncendioDeteccion">Detección de incendio</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.IncendioSupresion" name="IncendioSupresion">Sistema de supresión de incendio</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.3.1.4 Instalación de Aire Acondicionado</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.AireAcondicionadoInstalacion" name="AireAcondicionadoInstalacion">Instalación de Aire Acondicionado</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.AireAcondicionadoCortinas" name="AireAcondicionadoCortinas">Cortinas de aire</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.AireAcondicionadoEsclusas" name="AireAcondicionadoEsclusas">Esclusas biológicas</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.AireAcondicionadoPresicion" name="AireAcondicionadoPresicion">Aire de precisión</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.3.1.5 Instalaciones especiales</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.EspecialesHidrogeno" name="EspecialesHidrogeno">Instalación de hidrógeno</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.EspecialesNitrogeno" name="EspecialesNitrogeno">Instalación de nitrógeno cromatográfico</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.EspecialesArgon" name="EspecialesArgon">Instalación de argón</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.EspecialesAirePresion" name="EspecialesAirePresion">Instalación de aire a presión</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.EspecialesHelio" name="EspecialesHelio">Instalación de helio</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.EspecialesNitrogenoLiquido" name="EspecialesNitrogenoLiquido">Instalación de nitrógeno líquido</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.3.1.6 Instalaciones de seguridad</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.SeguridadAccesos" name="SeguridadAccesos">Control de accesos</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.SeguridadArcosDetectoresMetal" name="SeguridadArcosDetectoresMetal">Arcos detectores de metal</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.SeguridadEsclusas" name="SeguridadEsclusas">Esclusas de seguridad</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.SeguridadClavesXOperador" name="SeguridadClavesXOperador">Claves de seguridad por Operador</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.SeguridadRegistroDigitalIngreso" name="SeguridadRegistroDigitalIngreso">Registro digital del ingreso y salida del personal operativo</ion-toggle>    
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/a_3_1" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3 -->
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Acabados -->
+<script id="a_3_1.html" type="text/ng-template">
+<ion-view title="Anexo 3">
+    <ion-content padding="true" class="has-header">
+        <form>            
+            <div class="list card">                
+                <div class="item item-stable item-body">
+                    <div>A.3.2 Acabados
+                    </div>
+                </div>
+            </div>
+            <ion-list>
+                <ion-item class="item-divider">Grupo de Acabados</ion-item>
+                <ion-item>-componente-</ion-item>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Comentarios de los acabados</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo3ViewModel.Anexo3.ComentariosAcabados" name="ComentariosAcabados"> </textarea>
+            </label>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/a_4" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>            
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo4ViewModel.ListAnexo4 -->
+<script id="a_4.html" type="text/ng-template">
+<ion-view title="Anexo 4">
+    <ion-content padding="true" class="has-header">
+        <form ng-repeat="item in datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo4ViewModel.ListAnexo4"> 
+            <div class="list card">                
+                <div class="item item-dark item-icon-left item-text-wrap">
+                    <i class="icon ion-ios7-bell-outline"></i>
+                    <div>Para uso exclusivo de inmuebles donde se ubique Bodega o Almacén de Evidencias</div>
+                </div>
+                <div class="item item-calm item-icon-left item-text-wrap">
+                    <i class="icon ion-ios7-information-outline"></i>
+                    Los requerimientos que a continuación se señalan, deberán ser requisitados por cada bodega de evidencias (en caso de encontrarse más de una en el inmueble)
+                </div>                          
+            </div>
+            <div class="list card">                
+                <div class="item item-stable item-body">
+                    <div>A.4.1 Requerimientos de Instalaciones para espacios de Bodega o Almacén de Evidencias
+                    </div>
+                </div>
+            </div>      
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.4.1.1 Predio</ion-item>                
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.PredioUbicacionGeografica" name="PredioUbicacionGeografica">Ubicación geográfica segura</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.PredioSuseptibleInundacion" name="PredioSuseptibleInundacion">Susceptibilidad de inundación</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.PredioSuseptibleDerrumbe" name="PredioSuseptibleDerrumbe">Susceptibilidad de derrumbe</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.4.1.2 Fachada</ion-item>                
+                <label class="item item-select">
+                    <span class="input-label">Material de muros</span>
+                    <select ng-model="item.FK_IdMaterialFachada__INFRA" name="FK_IdMaterialFachada__INFRA"></select>
+                </label>                
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.FachadaAislamientoTermico" name="FachadaAislamientoTermico">Aislamiento térmico</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.FachadaMaterialesRetardantesFuego" name="FachadaMaterialesRetardantesFuego">Materiales retardantes al fuego</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.FachadaBlidaje" name="FachadaBlidaje">Blindaje</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.FachadaResistenciaMedioCalibre" name="FachadaResistenciaMedioCalibre">Resistencia a daños por arma de fuego de mediano calibre</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.4.1.3 Techumbre</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.TechumbreAislamientoTermico" name="TechumbreAislamientoTermico">Aislamiento térmico</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.TechumbreMaterialesRetardantesFuego" name="TechumbreMaterialesRetardantesFuego">Materiales retardantes al fuego</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.TechumbreTechoDosAguas" name="TechumbreTechoDosAguas">Construcción del techo a dos aguas</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.TechumbreImpermiabilizacion" name="TechumbreImpermiabilizacion">Impermeabilización</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.4.1.4 Acabados</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AcabadosRevestimientoEpoxicos" name="AcabadosRevestimientoEpoxicos">Revestimiento con agentes epóxicos</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AcabadosRecubiertaAnticorrosivos" name="AcabadosRecubiertaAnticorrosivos">Recubierta con pinturas anticorrosivas</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.4.1.5 Ventilación</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.VentilacionExtraccionAire" name="VentilacionExtraccionAire">Sistema de extracción de aire</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.VentilacionRegulacionHumedad" name="VentilacionRegulacionHumedad">Regulación de niveles de humedad</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.VentilacionInyeccionAire" name="VentilacionInyeccionAire">Sistema de inyección de aire</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.4.1.6 Temperatura</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.TemperaturaAireAcondicionado" name="TemperaturaAireAcondicionado">Aire Acondicionado</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.TemperaturaEqRemotosEnfriamiento" name="TemperaturaEqRemotosEnfriamiento">Equipos remotos de enfriamiento</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.4.1.7 Instalaciones Especiales</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EspecialesPlantaEmergencia" name="EspecialesPlantaEmergencia">Planta de emergencia</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EspecialesDeteccionIncendios" name="EspecialesDeteccionIncendios">Sistema de detección de incendios</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EspecialesMonitoreoCCTV" name="EspecialesMonitoreoCCTV">Monitoreo de CCTV</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EspecialesSupresionIncendios" name="EspecialesSupresionIncendios">Sistemas de supresión de incendios</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.4.1.8 Áreas</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaMesaControl" name="AreaMesaControl">Mesa de control</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaObjetosAsegurados" name="AreaObjetosAsegurados">Área de objetos asegurados</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaAlmacenGeneral" name="AreaAlmacenGeneral">Almacén general</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaBovedaArmeria" name="AreaBovedaArmeria">Bóveda de armería</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaBovedaNarcoticos" name="AreaBovedaNarcoticos">Bóveda de narcóticos</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaCamaraFrigorifica" name="AreaCamaraFrigorifica">Cámara frigorífica</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaRegistro" name="AreaRegistro">Área de registro</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaObjetosAseguradosRiesgo" name="AreaObjetosAseguradosRiesgo">Área de objetos asegurados de riesgo</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaBiologicos" name="AreaBiologicos">Área de biológicos</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaBovedaValores" name="AreaBovedaValores">Bóveda de valores</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.AreaBovedaResguardoTmp" name="AreaBovedaResguardoTmp">Bóveda de resguardo temporal</ion-toggle>
+            </ion-list>
+            <div class="list card">                
+                <div class="item item-stable item-body">
+                    <div>A.4.2 Requerimientos de equipamiento para espacios de Bodega o Almacén de Evidencias
+                    </div>
+                </div>
+            </div>      
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoTieneEstanteria" name="EquipamientoTieneEstanteria">Estantería</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoModular" name="EquipamientoModular">Modular</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoMovil" name="EquipamientoMovil">Móvil</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoRackAmericano" name="EquipamientoRackAmericano">Rack americano</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoAlmacenRotativo" name="EquipamientoAlmacenRotativo">Almacén rotativo</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoTieneRefrigeracion" name="EquipamientoTieneRefrigeracion">Refrigeración</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoRefrigeracionModular" name="EquipamientoRefrigeracionModular">Cámara de refrigeración modular</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoCongeladorRefrigerador" name="EquipamientoCongeladorRefrigerador">Congelador y refrigerador</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoRefrigeradorUnaPuerta" name="EquipamientoRefrigeradorUnaPuerta">Refrigerador una puerta</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoRefrigeradorDosPuerta" name="EquipamientoRefrigeradorDosPuerta">Refrigerador dos puertas</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoSeguridadResguardo" name="EquipamientoSeguridadResguardo">Seguridad y resguardo</ion-toggle>            
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoCajaFuerte" name="EquipamientoCajaFuerte">Caja fuerte básica</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoBovedaSeguridad" name="EquipamientoBovedaSeguridad">Bóveda de seguridad</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-toggle toggle-class="toggle-positive" ng-model="item.EquipamientoGabineteSecado" name="EquipamientoGabineteSecado">Gabinete de secado</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Notas</span><textarea placeholder="" rows="6" ng-model="item.Notas" name="Notas"> </textarea>
+            </label>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>                
+                <ion-item class="item-divider">
+                    <a href="#/a_5" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>            
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.Anexo5 -->
+<script id="a_5.html" type="text/ng-template">
+<ion-view title="Anexo 5">
+    <ion-content padding="true" class="has-header">
+        <form> 
+            <div class="list card">   
+                <div class="item item-dark item-icon-left item-text-wrap">
+                    <i class="icon ion-ios7-bell-outline"></i>
+                    <div>Para uso exclusivo de inmuebles donde se ubique Salas de Juicios Orales Penales</div>
+                </div>             
+                <div class="item item-calm item-icon-left item-text-wrap">
+                    <i class="icon ion-ios7-information-outline"></i>
+                    Los requerimientos que a continuación se señalan, deberán ser requisitados por cada una de las salas a las que se logre accesar durante el levantamiento del inmueble.
+                </div>
+            </div>     
+            <ion-list>                
+                <label class="item item-input">
+                    <span class="input-label">Año de Construcción y/o adaptación</span>
+                    <input type="tel" placeholder="año" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.Anexo5.AnioConstruccionAdaptacion" name="AnioConstruccionAdaptacion">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">No. Salas en el Inmueble</span>
+                    <input type="tel" placeholder="0" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.Anexo5.NumeroSalasInmueble" name="NumeroSalasInmueble">
+                </label>                
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/a_5_1" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!-- datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala -->
+<script id="a_5_1.html" type="text/ng-template">
+<ion-view title="Anexo 5">
+    <ion-content padding="true" class="has-header">
+        <form ng-repeat="item in datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala">              
+            <div class="list card">                
+                <div class="item item-stable item-body">
+                    <div>A.5.1 Requerimientos de Instalaciones para Salas de Juicios Orales
+                    </div>
+                </div>
+            </div>    
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.5.1.1 Mobiliario y Equipamiento</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilMesaTrabajoJueces" name="MobilMesaTrabajoJueces">Mesa estrado para jueces</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilMesaMPDefensoria" name="MobilMesaMPDefensoria">Mesa para MP y Defensoría</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilMesaTestigos" name="MobilMesaTestigos">Mesa para testigos y encargado de sala</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilMesaDefensoria" name="MobilMesaDefensoria">Mesa para Defensoría</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilSillaJuez" name="MobilSillaJuez">Silla de Juez</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilButacasAncladas" name="MobilButacasAncladas">Butacas para audiencia ancladas al piso</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilBanderillaDivisoria" name="MobilBanderillaDivisoria">Banderilla divisoria baja con sistema de control</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilTV" name="MobilTV">TV</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilDVD" name="MobilDVD">Reproductor de DVD</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilProyectorOpacos" name="MobilProyectorOpacos">Proyector de cuerpos opacos</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilSemaforoGrabacion" name="MobilSemaforoGrabacion">Semáforo de grabación</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilMicrofonoAmbiental" name="MobilMicrofonoAmbiental">Micrófono ambiental</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilCamaraCCTV" name="MobilCamaraCCTV">Cámara de CCTV</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilBanderaNacional" name="MobilBanderaNacional">Bandera Nacional</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilEscudoNacional" name="MobilEscudoNacional">Escudo Nacional</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilRelojFechaHora" name="MobilRelojFechaHora">Reloj con fecha y hora</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilAlarmaVisualSonora" name="MobilAlarmaVisualSonora">Alarma visual y sonora</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilEstacionTrabajoCompu" name="MobilEstacionTrabajoCompu">Estación de trabajo  (computadora)</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilCierrePuerta" name="MobilCierrePuerta">Cierre de Puerta</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.MobilBotonPanico" name="MobilBotonPanico">Botón de pánico</ion-toggle>
+            </ion-list>            
+            <div class="list card">                
+                <div class="item item-stable item-body">
+                    <div>A.5.1.2 Instalaciones
+                    </div>
+                </div>
+            </div>            
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.5.1.2.1 Instalación Eléctrica</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.ElectricaContactosRegulados" name="ElectricaContactosRegulados">Contactos  regulados</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.ElectricaTomasCorriente" name="ElectricaTomasCorriente">Tomas de corriente</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.ElectricaIluminacion" name="ElectricaIluminacion">Iluminación </ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.ElectricaCumpleNiveles" name="ElectricaCumpleNiveles">Cumple con los niveles de iluminación</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.ElectricaIluminacionEmergencia" name="ElectricaIluminacionEmergencia">Iluminación de emergencia</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.ElectricaTablerosAutomatizados" name="ElectricaTablerosAutomatizados">Tableros automatizados para ahorro de energía</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.5.1.2.2 Instalación para detección y supresión de incendio</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.IncendioDeteccion" name="IncendioDeteccion">Detección de incendio</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.IncendioSupresion" name="IncendioSupresion">Sistema de supresión de incendio</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.5.1.2.3 Instalación de Aire Acondicionado</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AireAcondicionado" name="AireAcondicionado">Instalación de Aire Acondicionado</ion-toggle>
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.5.2 Requerimientos de funcionalidad de Salas de Juicios Orales</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AccesoIndependienteJueces" name="AccesoIndependienteJueces">Acceso independiente de Jueces</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AccesoIndependienePublico" name="AccesoIndependienePublico">Acceso independiente de Público</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AccesoIndependienteImputado" name="AccesoIndependienteImputado">Acceso independiente de Imputado</ion-toggle>                
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider item-text-wrap">A.5.2.1 Áreas</ion-item>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AreaJuez" name="AreaJuez">Juez</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AreaDefensa" name="AreaDefensa">Defensa</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AreaMP" name="AreaMP">Ministerio Público</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AreaImputado" name="AreaImputado">Imputado</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AreaVictima" name="AreaVictima">Víctima</ion-toggle>
+                <ion-toggle toggle-class="toggle-positive" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.AreaPublico" name="AreaPublico">Público</ion-toggle>  
+            </ion-list>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Notas</span><textarea placeholder="" rows="6" ng-model="datajson.InfraestructuraViewModel.InmuebleNSJPViewModel.Anexo5ViewModel.ListSala.Notas" name="Notas"> </textarea>
+            </label>
+            <div class="spacer" style="display: block; height: 20px;"></div>
+            <ion-list>
+                <ion-item class="item-divider">
+                    <a href="#/" class="button button-balanced button-block">Guardar</a>
+                </ion-item>
+            </ion-list>
+        </form>                
+    </ion-content>
+</ion-view></script>
+<!--/templates-->
+  </body>
+</html>
