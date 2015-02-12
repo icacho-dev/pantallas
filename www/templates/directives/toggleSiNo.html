@@ -1,0 +1,7 @@
+<div>
+<ion-toggle toggle-class="toggle-calm" ng-model="ngStatus">{{ngLabel}}</ion-toggle>
+	<label class="item item-input item-stacked-label " ng-init="ngStatus" ng-show="ngStatus">
+		<span class="input-label" >{{ngSublabel}}:</span>
+		<input type="{{!ngType?'tel':ngType}}" placeholder="0" ng-model="ngValue">
+	</label>
+</div>

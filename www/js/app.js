@@ -1,4 +1,8 @@
-angular.module('app', ['ionic'])
+angular.module('app', [
+  'ionic',
+  'app.controllers',
+  'app.directives'  
+  ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

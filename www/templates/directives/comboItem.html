@@ -1,0 +1,12 @@
+
+  <label class="item item-input item-select">
+    <div class="input-label">
+    {{ngLabel}}
+    </div>    
+    <select 
+    	ng-init="ngBind" 
+    	ng-model="ngBind" 
+    	ng-options="item.Descricion for item in ngList track by item.PK">
+      	<option value="" ng-if="ngBind == ''">Selecciona</option>
+    </select>
+  </label>   

@@ -1,0 +1,8 @@
+<label class="item item-input item-stacked-label">
+	<span class="input-label">{{ngLabel}}</span>
+	<input type="number" 
+		placeholder="{{ngPlaceholder}}" 
+		ng-model="ngBind"
+		name="{{ngName}}">
+	<small class="error assertive" ng-show="ngFormName.{{ngName}}.$error.number" >El campo requiere un <strong>número</strong>.</small>
+</label>

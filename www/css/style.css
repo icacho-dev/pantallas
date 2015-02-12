@@ -1,0 +1,38 @@
+/* Empty. Add your own CSS if you like */
+.setecmaintitle {
+	font-size: 1.5em;
+}
+.setecsub {
+	
+	border-radius:5px;
+
+	color: #FFF!important;
+	padding: 1px 10px;
+	background-color: #444;
+}
+div.main-card > div > p > span {
+	font-weight: bold;
+}
+/*input.ng-invalid{
+	background: red;
+}*/
+.item-select select {
+position: relative !important;
+}
+
+
+.item-select:after {
+top: 60% !important;
+
+}
+
+.col{
+  background-color:gray !important;
+  border:thin solid black;
+  text-align:center !important;
+}
+
+
+.item-input{
+  display: block !important;
+}
